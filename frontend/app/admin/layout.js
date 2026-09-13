@@ -25,12 +25,18 @@ export default function AdminLayout({ children }) {
     }
   }, [user, loading, router]);
 
-  if (loading || !user) return <div className='flex items-center justify-center h-screen bg-bg-primary'><div className='animate-spin rounded-full h-12 w-12 border-t-2 border-accent'></div></div>;
+  if (loading || !user) return (
+    <div className='flex items-center justify-center h-screen bg-bg-primary'>
+      <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-accent'></div>
+    </div>
+  );
 
   return (
-    <div className='flex min-h-screen bg-bg-primary'>
+    <div className='flex min-h-screen bg-bg-primary relative overflow-x-hidden'>
       <Sidebar items={adminNav} role='admin' />
-      <main className='flex-1 ml-[250px]'>{children}</main>
+      <main className='flex-1 md:ml-[260px] pt-16 md:pt-0 w-full min-w-0 transition-all duration-300'>
+        {children}
+      </main>
     </div>
   );
 }

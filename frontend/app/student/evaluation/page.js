@@ -171,25 +171,25 @@ function EvaluationContent() {
   };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto space-y-8">
+    <div className="p-4 sm:p-6 md:p-8 max-w-4xl mx-auto space-y-6 sm:space-y-8">
       {result && result.percentage >= 50 && <Confetti width={windowSize.width} height={windowSize.height} recycle={false} numberOfPieces={500} />}
       
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-          <BrainCircuit className="text-indigo-400 w-8 h-8" /> ✍️ Module Evaluation
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 flex items-center gap-3">
+          <BrainCircuit className="text-indigo-400 w-7 h-7 sm:w-8 sm:h-8 shrink-0" /> ✍️ Module Evaluation
         </h1>
-        <p className="text-gray-400">Pass evaluations to unlock the next module in your course.</p>
+        <p className="text-sm sm:text-base text-gray-400">Pass evaluations to unlock the next module in your course.</p>
       </motion.div>
 
       {!result && (
-        <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-          <div className="flex flex-col md:flex-row gap-6 items-end">
+        <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6">
+          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-end">
             <div className="flex-1 w-full">
-              <label className="block text-sm font-medium text-gray-400 mb-2">Select Unlocked Module</label>
+              <label className="block text-xs sm:text-sm font-medium text-gray-400 mb-2">Select Unlocked Module</label>
               <select 
                 value={selectedModule} 
                 onChange={(e) => setSelectedModule(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 text-white text-xs sm:text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
               >
                 {availableModules.length === 0 && <option value="">No unlocked modules available</option>}
                 {availableModules.map(m => (
@@ -201,10 +201,10 @@ function EvaluationContent() {
             </div>
             
             <div className="w-full md:w-auto">
-              <label className="block text-sm font-medium text-gray-400 mb-2">Language</label>
-              <div className="bg-gray-800 p-1 rounded-lg flex inline-flex border border-gray-700">
-                <button onClick={() => changeLanguage('English')} className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${language === 'English' ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}>English</button>
-                <button onClick={() => changeLanguage('Hindi')} className={`px-6 py-2 rounded-md text-sm font-medium transition-all ${language === 'Hindi' || language === 'हिंदी' ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}>हिंदी</button>
+              <label className="block text-xs sm:text-sm font-medium text-gray-400 mb-2">Question Language</label>
+              <div className="bg-gray-800 p-1 rounded-lg flex border border-gray-700">
+                <button onClick={() => changeLanguage('English')} className={`flex-1 md:flex-initial px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all ${language === 'English' ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}>🇬🇧 English</button>
+                <button onClick={() => changeLanguage('Hindi')} className={`flex-1 md:flex-initial px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all ${language === 'Hindi' || language === 'हिंदी' ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}>🇮🇳 हिंदी</button>
               </div>
             </div>
           </div>

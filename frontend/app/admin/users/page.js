@@ -53,10 +53,10 @@ export default function UserApprovals() {
   if (loading) return <div className="flex items-center justify-center h-screen text-indigo-400">Loading Users...</div>;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-8 space-y-8">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8">
       <div className="flex items-center gap-3">
-        <ShieldCheck className="w-8 h-8 text-indigo-400" />
-        <h1 className="text-3xl font-bold text-white">User Approvals</h1>
+        <ShieldCheck className="w-7 h-7 sm:w-8 sm:h-8 text-indigo-400 shrink-0" />
+        <h1 className="text-2xl sm:text-3xl font-bold text-white">User Approvals</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -105,9 +105,9 @@ export default function CourseManagement() {
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-8 space-y-8 max-w-6xl mx-auto">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 max-w-6xl mx-auto">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-white flex items-center gap-3"><BookOpen className="text-indigo-400"/> Course & Lecture Management</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3"><BookOpen className="text-indigo-400 shrink-0"/> Course & Lecture Management</h1>
       </div>
 
       {message && (

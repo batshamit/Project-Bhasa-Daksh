@@ -61,35 +61,35 @@ export default function MyProgress() {
   const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-4 sm:p-6 md:p-8 max-w-6xl mx-auto space-y-6 sm:space-y-8">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-          <BarChartIcon className="text-indigo-400 w-8 h-8" /> 📊 My Progress
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1.5 flex items-center gap-3">
+          <BarChartIcon className="text-indigo-400 w-7 h-7 sm:w-8 sm:h-8 shrink-0" /> 📊 My Progress
         </h1>
-        <p className="text-gray-400">Track your performance and learning milestones.</p>
+        <p className="text-sm sm:text-base text-gray-400">Track your performance and learning milestones.</p>
       </motion.div>
 
       {/* Summary Cards */}
-      <motion.div variants={container} initial="hidden" animate="show" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 flex items-center gap-4">
-          <div className="p-4 bg-green-500/10 rounded-lg"><CheckCircle className="text-green-500 w-8 h-8" /></div>
+      <motion.div variants={container} initial="hidden" animate="show" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 flex items-center gap-4">
+          <div className="p-3 sm:p-4 bg-green-500/10 rounded-lg shrink-0"><CheckCircle className="text-green-500 w-6 h-6 sm:w-8 sm:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400 font-medium">Total Completed</p>
-            <h3 className="text-2xl font-bold text-white">{data.completedModules.length} Modules</h3>
+            <p className="text-xs sm:text-sm text-gray-400 font-medium">Total Completed</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">{data.completedModules.length} Modules</h3>
           </div>
         </motion.div>
-        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 flex items-center gap-4">
-          <div className="p-4 bg-indigo-500/10 rounded-lg"><TrendingUp className="text-indigo-500 w-8 h-8" /></div>
+        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 flex items-center gap-4">
+          <div className="p-3 sm:p-4 bg-indigo-500/10 rounded-lg shrink-0"><TrendingUp className="text-indigo-500 w-6 h-6 sm:w-8 sm:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400 font-medium">Overall Average</p>
-            <h3 className="text-2xl font-bold text-white">{averageScore}%</h3>
+            <p className="text-xs sm:text-sm text-gray-400 font-medium">Overall Average</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">{averageScore}%</h3>
           </div>
         </motion.div>
-        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 flex items-center gap-4">
-          <div className="p-4 bg-yellow-500/10 rounded-lg"><Award className="text-yellow-500 w-8 h-8" /></div>
+        <motion.div variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 flex items-center gap-4">
+          <div className="p-3 sm:p-4 bg-yellow-500/10 rounded-lg shrink-0"><Award className="text-yellow-500 w-6 h-6 sm:w-8 sm:h-8" /></div>
           <div>
-            <p className="text-sm text-gray-400 font-medium">Best Phase</p>
-            <h3 className="text-2xl font-bold text-white">Phase {maxPhase}</h3>
+            <p className="text-xs sm:text-sm text-gray-400 font-medium">Best Phase</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">Phase {maxPhase}</h3>
           </div>
         </motion.div>
       </motion.div>

@@ -127,23 +127,23 @@ export default function EvaluationEditor() {
   if (loading) return <div className="flex items-center justify-center h-screen text-indigo-400">Loading Evaluations...</div>;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-8 space-y-8 max-w-6xl mx-auto">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-white flex items-center gap-3"><Activity className="text-indigo-400"/> Evaluation Editor</h1>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="p-4 sm:p-6 md:p-8 space-y-6 md:space-y-8 max-w-6xl mx-auto">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3"><Activity className="text-indigo-400"/> Evaluation Editor</h1>
       </div>
 
       {message && (
-        <div className={`p-4 rounded-lg flex items-center gap-3 ${message.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
-          <Check className="w-5 h-5" /> {message.text}
+        <div className={`p-4 rounded-lg flex items-center gap-3 text-sm ${message.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+          <Check className="w-5 h-5 shrink-0" /> {message.text}
         </div>
       )}
 
-      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
+      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6">
         <label className="text-sm font-medium text-gray-300 mb-2 block">Select Course & Module</label>
         <select 
           value={selectedModule} 
           onChange={e => setSelectedModule(e.target.value)}
-          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none font-medium"
+          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 outline-none font-medium text-sm sm:text-base"
         >
           {coursesWithModules.map(m => (
             <option key={m.module_id} value={m.module_id}>{m.label}</option>
@@ -152,13 +152,13 @@ export default function EvaluationEditor() {
       </div>
 
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">Evaluation Questions ({mcqs.length})</h2>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-white">Evaluation Questions ({mcqs.length})</h2>
           <button 
             onClick={() => setShowAdd(true)} 
-            className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-lg flex items-center gap-2 text-sm cursor-pointer"
+            className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2.5 rounded-lg font-medium transition-all shadow-lg flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer"
           >
-            <Plus className="w-4 h-4" /> Add Question to {selectedModule}
+            <Plus className="w-4 h-4" /> Add Question
           </button>
         </div>
         

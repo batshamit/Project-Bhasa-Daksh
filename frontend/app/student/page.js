@@ -75,18 +75,18 @@ export default function StudentDashboard() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex justify-between items-end">
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto space-y-6 sm:space-y-8">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">Welcome back, {user?.username}! 👋</h1>
-          <p className="text-gray-400">Ready to continue your language journey?</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1.5">Welcome back, {user?.username}! 👋</h1>
+          <p className="text-sm sm:text-base text-gray-400">Ready to continue your language journey?</p>
         </div>
-        <div className="flex gap-4">
-          <Link href="/student/lectures" className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2">
-            <PlayCircle className="w-5 h-5" /> Continue Learning
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <Link href="/student/lectures" className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-xl font-medium transition-all flex items-center justify-center gap-2 text-sm">
+            <PlayCircle className="w-4 h-4 text-accent" /> Continue Learning
           </Link>
-          <Link href="/student/evaluation" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-4 py-2 rounded-lg font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25 flex items-center gap-2">
-            Take Evaluation <ArrowRight className="w-5 h-5" />
+          <Link href="/student/evaluation" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-4 py-2.5 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-indigo-500/25 flex items-center justify-center gap-2 text-sm">
+            Take Evaluation <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </motion.div>

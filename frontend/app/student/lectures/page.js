@@ -122,62 +122,92 @@ export default function MyLectures() {
   const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto space-y-8">
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-              <BookOpen className="text-indigo-400 w-8 h-8" /> 📥 My Lectures
-            </h1>
-            <p className="text-gray-400">Progressive Language Skilling: Gradually transition from Hindi to Professional English.</p>
-          </div>
-
-          <div className="bg-gray-900/80 border border-indigo-500/30 rounded-xl p-3 flex items-center gap-3 shadow-[0_0_15px_rgba(99,102,241,0.15)]">
-            <Sparkles className="w-5 h-5 text-amber-400" />
-            <div>
-              <p className="text-xs text-gray-400 font-medium">Active PLS Level</p>
-              <p className="text-sm font-bold text-indigo-300">
-                Phase {userMaxPhase}: {userMaxPhase === 1 ? 'Hindi + Keywords' : userMaxPhase === 2 ? 'Hinglish' : userMaxPhase === 3 ? 'English + Glosses' : 'Full English'}
-              </p>
-            </div>
-          </div>
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto space-y-6 sm:space-y-8">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 flex items-center gap-3">
+            <BookOpen className="text-indigo-400 shrink-0"/> My Lectures
+          </h1>
+          <p className="text-sm sm:text-base text-gray-400">Adaptive bilingual learning with Progressive Language Skilling (PLS)</p>
         </div>
       </motion.div>
 
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-8">
+      {/* Language / Phase Controls */}
+      <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="text-sm font-medium text-gray-300">Default Learning Language:</span>
+          <div className="flex bg-gray-800 p-1 rounded-lg border border-gray-700">
+            <button
+              onClick={() => changeLanguage('English')}
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                language === 'English' ? 'bg-indigo-600 text-white shadow' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              🇬🇧 English (Direct)
+            </button>
+            <button
+              onClick={() => changeLanguage('Hindi')}
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                language === 'Hindi' ? 'bg-indigo-600 text-white shadow' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              🇮🇳 Hindi (PLS Pathway)
+            </button>
+          </div>
+        </div>
+
+        {/* Phase Selector Override */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs text-gray-400 font-medium">PLS Phase Mode:</span>
+          <select 
+            value={selectedPhase} 
+            onChange={(e) => setSelectedPhase(e.target.value)}
+            className="bg-gray-800 border border-gray-700 text-white text-xs rounded-lg px-3 py-1.5 outline-none font-medium cursor-pointer"
+          >
+            <option value="auto">✨ Auto-Progressive (Module Default)</option>
+            <option value="1">Phase 1: 100% Hindi + EN Keywords</option>
+            <option value="2">Phase 2: Hinglish Mix</option>
+            <option value="3">Phase 3: English + Hindi Glosses</option>
+            <option value="4">Phase 4: 100% Professional English</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Courses & Lectures List */}
+      <div className="space-y-6">
         {courses.map((course, cIdx) => {
           const courseModules = modulesByCourse[course.course_id] || [];
           const completedCount = courseModules.filter(m => completedModules.has(m.module_id || m.id)).length;
-          const progress = courseModules.length > 0 ? (completedCount / courseModules.length) * 100 : 0;
-          const courseLang = courseLanguages[course.course_id] || user?.preferred_language || 'Hindi';
-          const isHindiCourse = courseLang.toLowerCase() !== 'english';
+          const progress = courseModules.length > 0 ? Math.round((completedCount / courseModules.length) * 100) : 0;
           const courseDisplayNo = `Course #${cIdx + 1}`;
+          const courseLang = courseLanguages[course.course_id] || 'Hindi';
+          const isHindiCourse = courseLang === 'Hindi';
 
           return (
-            <motion.div key={course.course_id} variants={item} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-              <div className="mb-6">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-2">
-                  <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                    <span className="px-3 py-1 rounded-lg text-xs font-extrabold bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 uppercase tracking-wide">
+            <div key={course.course_id} className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4 sm:p-6 space-y-4">
+              <div>
+                <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3 mb-3">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5 flex-wrap">
+                    <span className="px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 uppercase tracking-wide">
                       {courseDisplayNo}
                     </span>
                     {course.title}
                   </h2>
                   
-                  <div className="flex items-center gap-2">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold border flex items-center gap-1.5 ${isHindiCourse ? 'bg-amber-500/10 text-amber-300 border-amber-500/30' : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30'}`}>
-                      {isHindiCourse ? '🇮🇳 Progressive Hindi → English PLS' : '🇬🇧 Full English Immersion'}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold border flex items-center gap-1.5 ${isHindiCourse ? 'bg-amber-500/10 text-amber-300 border-amber-500/30' : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30'}`}>
+                      {isHindiCourse ? '🇮🇳 Hindi → English PLS' : '🇬🇧 English Immersion'}
                     </span>
                     <button
                       onClick={() => { setSelectedModalCourse(course); setModalLang(courseLang); }}
-                      className="px-3 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs rounded-full border border-gray-700 transition-colors flex items-center gap-1 cursor-pointer"
+                      className="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs rounded-full border border-gray-700 transition-colors flex items-center gap-1 cursor-pointer"
                     >
                       <Languages className="w-3.5 h-3.5 text-indigo-400" /> Choose Language
                     </button>
                   </div>
                 </div>
 
-                <p className="text-gray-400 mb-4">{course.description}</p>
+                <p className="text-sm text-gray-400 mb-4">{course.description}</p>
                 <div className="w-full bg-gray-800 rounded-full h-2 mb-2">
                   <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
                 </div>
@@ -371,7 +401,7 @@ export default function MyLectures() {
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           );
         })}
         {courses.length === 0 && (
@@ -379,7 +409,7 @@ export default function MyLectures() {
              You are not enrolled in any courses yet.
            </div>
         )}
-      </motion.div>
+      </div>
 
       {/* Course Starting Language Selection Modal */}
       <AnimatePresence>
