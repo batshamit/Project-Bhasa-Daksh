@@ -1,6 +1,9 @@
 name = "project-bhasa-daksh"
-pages_build_output_dir = "./frontend/out"
 compatibility_date = "2026-09-13"
+pages_build_output_dir = "./frontend/out"
+
+[build]
+command = "cd frontend && npm install && npm run build"
 
 [assets]
 directory = "./frontend/out"
