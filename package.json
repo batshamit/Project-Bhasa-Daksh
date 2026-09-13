@@ -1,0 +1,9 @@
+{
+  "name": "project-bhasa-daksh",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "deploy": "npm --prefix frontend run build && npx wrangler pages deploy frontend/out"
+  }
+}
