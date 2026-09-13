@@ -10,6 +10,7 @@ ENV/
 out/
 build/
 dist/
+.wrangler/
 *.egg-info/
 
 # Python Cache

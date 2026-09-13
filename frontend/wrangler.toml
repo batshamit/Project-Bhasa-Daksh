@@ -1,6 +1,6 @@
 name = "project-bhasa-daksh"
-pages_build_output_dir = "./frontend/out"
+pages_build_output_dir = "./out"
 compatibility_date = "2026-09-13"
 
 [assets]
-directory = "./frontend/out"
+directory = "./out"
