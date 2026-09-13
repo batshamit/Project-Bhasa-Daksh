@@ -1,0 +1,9 @@
+To access this site 
+http://localhost:8501/
+
+run this command 
+python -m streamlit run app.py
+
+Run it from C:\Users\Amit\Documents\Project-Bhasa-Daksh\. 
+
+Login as admin/admin123
